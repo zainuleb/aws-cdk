@@ -1,16 +1,15 @@
 import * as cdk from 'aws-cdk-lib';
+import * as _s3 from 'aws-cdk-lib/aws-s3';
+
 import { Construct } from 'constructs';
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
 
 export class AwsCdkTsStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
-
-    // The code that defines your stack goes here
-
-    // example resource
-    // const queue = new sqs.Queue(this, 'AwsCdkTsQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
+    const s3Bucket = new _s3.Bucket(this, 'testBucket', {
+      bucketName: 'samplebucket-123-xxxx',
+      versioned: true,
+      encryption: _s3.BucketEncryption.KMS_MANAGED,
+    });
   }
 }
